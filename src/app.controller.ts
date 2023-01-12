@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Req } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Location } from './models';
+import { Location, Weather, Forecast } from './models';
 
 @Controller('v1')
 export class AppController {
@@ -18,7 +18,7 @@ export class AppController {
   async getCurrent(
     @Req() request,
     @Param('city') city?:string
-  ): Promise<any> {
+  ): Promise<Weather> {
     const {ip} = request;
     return await this.appService.getCurrent(ip, city);
   }
@@ -27,7 +27,7 @@ export class AppController {
   async getForecast(
     @Req() request,
     @Param('city') city?:string
-  ): Promise<any> {
+  ): Promise<Forecast> {
     const {ip} = request;
     return await this.appService.getForecast(ip, city);
   }

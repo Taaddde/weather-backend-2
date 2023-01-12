@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Location } from './models';
+import { Forecast, Location, Weather } from './models';
 
 @Injectable()
 export class AppService {
@@ -10,7 +10,7 @@ export class AppService {
     return data;
   }
 
-  async getCurrent(ip: string, city?: string): Promise<any> {
+  async getCurrent(ip: string, city?: string): Promise<Weather> {
     let url = '';
     if (city) {
       url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.OPENWEATHER_KEY}&units=metric`
@@ -27,7 +27,7 @@ export class AppService {
     return data
   }
 
-  async getForecast(ip: string, city?: string): Promise<any> {
+  async getForecast(ip: string, city?: string): Promise<Forecast> {
     let url = '';
     if (city) {
       url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.OPENWEATHER_KEY}&units=metric`;
