@@ -20,7 +20,9 @@ describe('AppController (e2e)', () => {
       const startTime = performance.now();
       const response = await request(app.getHttpServer()).get('/v1/location');
       expect(response.statusCode).toBe(200);
-      expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
+      expect(response.headers['content-type']).toBe(
+        'application/json; charset=utf-8',
+      );
       expect(performance.now() - startTime).toBeLessThan(800);
     });
   });
@@ -28,9 +30,13 @@ describe('AppController (e2e)', () => {
   describe('GET /v1/current', () => {
     it('Current with city return 200 correctly', async () => {
       const startTime = performance.now();
-      const response = await request(app.getHttpServer()).get('/v1/current/Montevideo');
+      const response = await request(app.getHttpServer()).get(
+        '/v1/current/Montevideo',
+      );
       expect(response.statusCode).toBe(200);
-      expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
+      expect(response.headers['content-type']).toBe(
+        'application/json; charset=utf-8',
+      );
       expect(performance.now() - startTime).toBeLessThan(800);
     });
 
@@ -38,7 +44,9 @@ describe('AppController (e2e)', () => {
       const startTime = performance.now();
       const response = await request(app.getHttpServer()).get('/v1/current');
       expect(response.statusCode).toBe(200);
-      expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
+      expect(response.headers['content-type']).toBe(
+        'application/json; charset=utf-8',
+      );
       expect(performance.now() - startTime).toBeLessThan(800);
     });
   });
@@ -46,9 +54,13 @@ describe('AppController (e2e)', () => {
   describe('GET /v1/forecast', () => {
     it('Forecast with city return 200 correctly', async () => {
       const startTime = performance.now();
-      const response = await request(app.getHttpServer()).get('/v1/forecast/Montevideo');
+      const response = await request(app.getHttpServer()).get(
+        '/v1/forecast/Montevideo',
+      );
       expect(response.statusCode).toBe(200);
-      expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
+      expect(response.headers['content-type']).toBe(
+        'application/json; charset=utf-8',
+      );
       expect(performance.now() - startTime).toBeLessThan(800);
     });
 
@@ -56,7 +68,9 @@ describe('AppController (e2e)', () => {
       const startTime = performance.now();
       const response = await request(app.getHttpServer()).get('/v1/forecast');
       expect(response.statusCode).toBe(200);
-      expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
+      expect(response.headers['content-type']).toBe(
+        'application/json; charset=utf-8',
+      );
       expect(performance.now() - startTime).toBeLessThan(800);
     });
   });
