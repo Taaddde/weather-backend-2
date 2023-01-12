@@ -13,4 +13,5 @@ export interface Location {
     org?: string;
     as?: string;
     query: string;
+    message?: string;
   }

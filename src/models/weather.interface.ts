@@ -51,6 +51,7 @@ export interface Weather {
     name: string;
     cod: number;
     dt_txt?: string;
+    message?:string
 }
 
 

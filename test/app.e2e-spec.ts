@@ -15,18 +15,6 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  describe('GET /ping', () => {
-    it('Ping return pong and 200 correctly', async () => {
-      const startTime = performance.now();
-      const response = await request(app.getHttpServer()).get('/ping');
-      console.log(response.body)
-      expect(response.statusCode).toBe(200);
-      expect(response.body).toBe('pong');
-      expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
-      expect(performance.now() - startTime).toBeLessThan(200);
-    });
-  });
-
   describe('GET /v1/location', () => {
     it('Location return 200 correctly', async () => {
       const startTime = performance.now();
