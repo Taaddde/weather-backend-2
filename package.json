@@ -1,7 +1,7 @@
 {
   "name": "weather-backend-2",
   "version": "0.0.1",
-  "description": "",
+  "description": "Una API de clima que permite a los desarrolladores acceder a datos meteorológicos a través de peticiones HTTP. Esta API utiliza Nest js como framework y Fastify como su framework web para manejar las solicitudes y las respuestas HTTP.",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
