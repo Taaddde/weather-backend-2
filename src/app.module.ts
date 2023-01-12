@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { WeatherModule } from './components/weather/weather.module';
+import { WeatherModule } from './components';
 
 @Module({
   imports: [WeatherModule],
