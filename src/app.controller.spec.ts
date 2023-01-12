@@ -15,8 +15,9 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return "Hello World!"', async () => {
+      const response = await appController.getLocation({ip: '191.84.204.141'});
+      expect(response.status).toBe('success');
     });
   });
 });
