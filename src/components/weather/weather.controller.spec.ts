@@ -1,19 +1,19 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { WeatherController } from './weather.controller';
+import { WeatherService } from './weather.service';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
 describe('AppController', () => {
-  let appController: AppController;
+  let appController: WeatherController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
-      providers: [AppService],
+      controllers: [WeatherController],
+      providers: [WeatherService],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    appController = app.get<WeatherController>(WeatherController);
   });
 
   describe('getLocation', () => {

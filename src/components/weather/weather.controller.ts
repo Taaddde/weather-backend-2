@@ -1,10 +1,10 @@
 import { Controller, Get, Param, Req } from '@nestjs/common';
-import { AppService } from './app.service';
-import { Location, Weather, Forecast } from './models';
+import { WeatherService } from './weather.service';
+import { Location, Weather, Forecast } from 'src/models';
 
 @Controller('v1')
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class WeatherController {
+  constructor(private readonly appService: WeatherService) {}
 
   @Get('/location')
   async getLocation(

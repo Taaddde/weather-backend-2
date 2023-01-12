@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Forecast, Location, Weather } from './models';
+import { Forecast, Location, Weather } from 'src/models';
 
 @Injectable()
-export class AppService {
+export class WeatherService {
   async getLocation(ip: string): Promise<Location> {
     const response = await fetch(`http://ip-api.com/json/${ip}`)
     const data = await response.json()
