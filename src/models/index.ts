@@ -1,5 +1,9 @@
-import { Location } from './location';
+import { Location } from './location.interface';
+import { Weather } from './weather.interface';
+import { Forecast } from './forecast.interface';
 
 export {
-    Location
+    Location,
+    Weather,
+    Forecast
 }
