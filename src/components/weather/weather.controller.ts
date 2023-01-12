@@ -7,26 +7,26 @@ export class WeatherController {
   constructor(private readonly appService: WeatherService) {}
 
   @Get('/location')
-  async getLocation(@Req() request): Promise<Location> {
-    const { ip } = request;
+  async getLocation(@Req() req): Promise<Location> {
+    const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'];
     return await this.appService.getLocation(ip);
   }
 
   @Get('/current/:city?')
   async getCurrent(
-    @Req() request,
+    @Req() req,
     @Param('city') city?: string,
   ): Promise<Weather> {
-    const { ip } = request;
+    const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'];
     return await this.appService.getCurrent(ip, city);
   }
 
   @Get('/forecast/:city?')
   async getForecast(
-    @Req() request,
+    @Req() req,
     @Param('city') city?: string,
   ): Promise<Forecast> {
-    const { ip } = request;
+    const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'];
     return await this.appService.getForecast(ip, city);
   }
 }
