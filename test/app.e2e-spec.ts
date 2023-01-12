@@ -15,10 +15,13 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/v1/location')
-      .expect(200)
-      .expect('Hello World!');
+  describe('GET /v1/location', () => {
+    it('Location return 200 correctly', async () => {
+      const startTime = performance.now();
+      const response = await request(app.getHttpServer()).get('/v1/location');
+      expect(response.statusCode).toBe(200);
+      expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
+      expect(performance.now() - startTime).toBeLessThan(800);
+    });
   });
 });
