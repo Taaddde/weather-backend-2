@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { WeatherController } from './weather.controller';
 import { WeatherService } from './weather.service';
-import { LoggerInterceptor } from 'src/interceptors';
+import { LoggerInterceptor } from '../../interceptors';
 
 @Module({
   imports: [],
