@@ -19,7 +19,7 @@ describe('AppController (e2e)', () => {
   });
 
   describe('GET /v1/location', () => {
-    it('Location return 200 correctly with ipv4', async () => {
+    it('Location return 200 correctly in < 800ms with ipv4', async () => {
       const startTime = performance.now();
       const response = await request(app.getHttpServer()).get('/v1/location').set('x-forwarded-for', ipv4)
       expect(response.statusCode).toBe(200);
@@ -28,7 +28,7 @@ describe('AppController (e2e)', () => {
       );
       expect(performance.now() - startTime).toBeLessThan(800);
     });
-    it('Location return 200 correctly with ipv6', async () => {
+    it('Location return 200 correctly in < 800ms with ipv6', async () => {
       const startTime = performance.now();
       const response = await request(app.getHttpServer()).get('/v1/location').set('x-forwarded-for', ipv6)
       expect(response.statusCode).toBe(200);
@@ -37,7 +37,7 @@ describe('AppController (e2e)', () => {
       );
       expect(performance.now() - startTime).toBeLessThan(800);
     });
-    it('Location return 404 correctly with wrong ip', async () => {
+    it('Location return 404 correctly in < 800ms with wrong ip', async () => {
       const startTime = performance.now();
       const response = await request(app.getHttpServer()).get('/v1/location').set('x-forwarded-for', wrongIp)
       expect(response.statusCode).toBe(200);
@@ -49,7 +49,7 @@ describe('AppController (e2e)', () => {
   });
 
   describe('GET /v1/current', () => {
-    it('Current with city return 200 correctly', async () => {
+    it('Current with city return 200 correctly in < 800ms', async () => {
       const startTime = performance.now();
       const response = await request(app.getHttpServer()).get(
         '/v1/current/Montevideo',
@@ -61,7 +61,7 @@ describe('AppController (e2e)', () => {
       expect(performance.now() - startTime).toBeLessThan(800);
     });
 
-    it('Current without city return 200 correctly', async () => {
+    it('Current without city return 200 correctly in < 800ms', async () => {
       const startTime = performance.now();
       const response = await request(app.getHttpServer()).get('/v1/current').set('x-forwarded-for', ipv4);
       expect(response.statusCode).toBe(200);
@@ -73,7 +73,7 @@ describe('AppController (e2e)', () => {
   });
 
   describe('GET /v1/forecast', () => {
-    it('Forecast with city return 200 correctly', async () => {
+    it('Forecast with city return 200 correctly in < 800ms', async () => {
       const startTime = performance.now();
       const response = await request(app.getHttpServer()).get(
         '/v1/forecast/Montevideo',
@@ -85,7 +85,7 @@ describe('AppController (e2e)', () => {
       expect(performance.now() - startTime).toBeLessThan(800);
     });
 
-    it('Forecast without city return 200 correctly', async () => {
+    it('Forecast without city return 200 correctly in < 800ms', async () => {
       const startTime = performance.now();
       const response = await request(app.getHttpServer()).get('/v1/forecast').set('x-forwarded-for', ipv4);
       expect(response.statusCode).toBe(200);

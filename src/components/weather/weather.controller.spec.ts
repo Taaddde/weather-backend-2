@@ -23,7 +23,7 @@ describe('WeatherController', () => {
   });
 
   describe('getLocation', () => {
-    it('Correctly detects the location by ipv4', async () => {
+    it('Successful detection of location by ipv4', async () => {
       const response = await appController.getLocation({ headers });
       expect(response.status).toBe('success');
       expect(response).toHaveProperty('lat');
@@ -33,7 +33,7 @@ describe('WeatherController', () => {
       expect(response).toHaveProperty('country');
       expect(response).toHaveProperty('countryCode');
     });
-    it('Correctly detects the location by ipv6', async () => {
+    it('Successful detection of location by ipv6', async () => {
       const response = await appController.getLocation({ headers: {'x-forwarded-for': ipv6} });
       expect(response.status).toBe('success');
       expect(response).toHaveProperty('lat');
@@ -51,7 +51,7 @@ describe('WeatherController', () => {
   });
 
   describe('getCurrent', () => {
-    it('Correctly current return data with city', async () => {
+    it('Correctly returns current data with city', async () => {
       const response = await appController.getCurrent({ headers }, city);
       expect(response.cod).toBe(200);
       expect(response).toHaveProperty('weather');
@@ -60,7 +60,7 @@ describe('WeatherController', () => {
       expect(response).toHaveProperty('wind');
       expect(response).toHaveProperty('coord');
     });
-    it('Correctly current return data without city', async () => {
+    it('Correctly returns current data without city', async () => {
       const response = await appController.getCurrent({ headers });
       expect(response.cod).toBe(200);
       expect(response).toHaveProperty('weather');
@@ -69,7 +69,7 @@ describe('WeatherController', () => {
       expect(response).toHaveProperty('wind');
       expect(response).toHaveProperty('coord');
     });
-    it('Failure current with wrong city', async () => {
+    it('Failure to return current data with wrong city', async () => {
       const response = await appController.getCurrent({ headers }, wrongCity);
       expect(response).not.toHaveProperty('weather');
       expect(response.cod).toBe('404');
@@ -78,19 +78,19 @@ describe('WeatherController', () => {
   });
 
   describe('getForecast', () => {
-    it('Correctly forecast return data with city', async () => {
+    it('Correctly returns forecast data with city', async () => {
       const response = await appController.getForecast({ headers}, city);
       expect(response.cod).toBe('200');
       expect(response.list.length).toBeGreaterThan(5);
       expect(response).toHaveProperty('city');
     });
-    it('Correctly forecast return data withouth city', async () => {
+    it('Correctly returns forecast data withouth city', async () => {
       const response = await appController.getForecast({ headers });
       expect(response.cod).toBe('200');
       expect(response.list.length).toBeGreaterThan(5);
       expect(response).toHaveProperty('city');
     });
-    it('Failure forecast with wrong city', async () => {
+    it('Failure to return forecast data with wrong city', async () => {
       const response = await appController.getForecast({ headers }, wrongCity);
       expect(response.cod).toBe('404');
       expect(response).not.toHaveProperty('city');
