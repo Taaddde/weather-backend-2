@@ -1,8 +1,10 @@
-import { Controller, Get, NotFoundException, Param, Req } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param, Req, UseInterceptors } from '@nestjs/common';
 import { WeatherService } from './weather.service';
 import { Location, Weather, Forecast } from 'src/models';
+import { LoggerInterceptor } from 'src/interceptors';
 
 @Controller('v1')
+@UseInterceptors(LoggerInterceptor)
 export class WeatherController {
   constructor(private readonly appService: WeatherService) {}
 
