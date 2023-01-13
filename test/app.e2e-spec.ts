@@ -42,7 +42,7 @@ describe('AppController (e2e)', () => {
         'application/json; charset=utf-8',
       );
     });
-    
+
     it('Location return 404 correctly with wrong ip', async () => {
       const response = await request(app.getHttpServer())
         .get('/v1/location')

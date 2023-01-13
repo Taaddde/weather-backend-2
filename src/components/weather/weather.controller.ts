@@ -12,7 +12,7 @@ export class WeatherController {
     const location = await this.appService.getLocation(ip);
 
     if (location.status === 'fail') {
-      throw new NotFoundException(location)
+      throw new NotFoundException(location);
     } else {
       return location;
     }
@@ -22,7 +22,7 @@ export class WeatherController {
   async getCurrent(@Req() req, @Param('city') city?: string): Promise<Weather> {
     const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'];
     const current = await this.appService.getCurrent(ip, city);
-    
+
     if (current.cod === '404') {
       throw new NotFoundException(current);
     } else {
@@ -43,6 +43,6 @@ export class WeatherController {
     } else {
       return forecast;
     }
-    return 
+    return;
   }
 }
