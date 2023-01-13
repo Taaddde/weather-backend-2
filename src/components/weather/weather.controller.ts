@@ -13,10 +13,7 @@ export class WeatherController {
   }
 
   @Get('/current/:city?')
-  async getCurrent(
-    @Req() req,
-    @Param('city') city?: string,
-  ): Promise<Weather> {
+  async getCurrent(@Req() req, @Param('city') city?: string): Promise<Weather> {
     const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'];
     return await this.appService.getCurrent(ip, city);
   }

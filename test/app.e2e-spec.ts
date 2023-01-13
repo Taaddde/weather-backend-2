@@ -21,7 +21,9 @@ describe('AppController (e2e)', () => {
   describe('GET /v1/location', () => {
     it('Location return 200 correctly in < 800ms with ipv4', async () => {
       const startTime = performance.now();
-      const response = await request(app.getHttpServer()).get('/v1/location').set('x-forwarded-for', ipv4)
+      const response = await request(app.getHttpServer())
+        .get('/v1/location')
+        .set('x-forwarded-for', ipv4);
       expect(response.statusCode).toBe(200);
       expect(response.headers['content-type']).toBe(
         'application/json; charset=utf-8',
@@ -30,7 +32,9 @@ describe('AppController (e2e)', () => {
     });
     it('Location return 200 correctly in < 800ms with ipv6', async () => {
       const startTime = performance.now();
-      const response = await request(app.getHttpServer()).get('/v1/location').set('x-forwarded-for', ipv6)
+      const response = await request(app.getHttpServer())
+        .get('/v1/location')
+        .set('x-forwarded-for', ipv6);
       expect(response.statusCode).toBe(200);
       expect(response.headers['content-type']).toBe(
         'application/json; charset=utf-8',
@@ -39,7 +43,9 @@ describe('AppController (e2e)', () => {
     });
     it('Location return 404 correctly in < 800ms with wrong ip', async () => {
       const startTime = performance.now();
-      const response = await request(app.getHttpServer()).get('/v1/location').set('x-forwarded-for', wrongIp)
+      const response = await request(app.getHttpServer())
+        .get('/v1/location')
+        .set('x-forwarded-for', wrongIp);
       expect(response.statusCode).toBe(200);
       expect(response.headers['content-type']).toBe(
         'application/json; charset=utf-8',
@@ -51,9 +57,9 @@ describe('AppController (e2e)', () => {
   describe('GET /v1/current', () => {
     it('Current with city return 200 correctly in < 800ms', async () => {
       const startTime = performance.now();
-      const response = await request(app.getHttpServer()).get(
-        '/v1/current/Montevideo',
-      ).set('x-forwarded-for', ipv4);
+      const response = await request(app.getHttpServer())
+        .get('/v1/current/Montevideo')
+        .set('x-forwarded-for', ipv4);
       expect(response.statusCode).toBe(200);
       expect(response.headers['content-type']).toBe(
         'application/json; charset=utf-8',
@@ -63,7 +69,9 @@ describe('AppController (e2e)', () => {
 
     it('Current without city return 200 correctly in < 800ms', async () => {
       const startTime = performance.now();
-      const response = await request(app.getHttpServer()).get('/v1/current').set('x-forwarded-for', ipv4);
+      const response = await request(app.getHttpServer())
+        .get('/v1/current')
+        .set('x-forwarded-for', ipv4);
       expect(response.statusCode).toBe(200);
       expect(response.headers['content-type']).toBe(
         'application/json; charset=utf-8',
@@ -75,9 +83,9 @@ describe('AppController (e2e)', () => {
   describe('GET /v1/forecast', () => {
     it('Forecast with city return 200 correctly in < 800ms', async () => {
       const startTime = performance.now();
-      const response = await request(app.getHttpServer()).get(
-        '/v1/forecast/Montevideo',
-      ).set('x-forwarded-for', ipv4);
+      const response = await request(app.getHttpServer())
+        .get('/v1/forecast/Montevideo')
+        .set('x-forwarded-for', ipv4);
       expect(response.statusCode).toBe(200);
       expect(response.headers['content-type']).toBe(
         'application/json; charset=utf-8',
@@ -87,7 +95,9 @@ describe('AppController (e2e)', () => {
 
     it('Forecast without city return 200 correctly in < 800ms', async () => {
       const startTime = performance.now();
-      const response = await request(app.getHttpServer()).get('/v1/forecast').set('x-forwarded-for', ipv4);
+      const response = await request(app.getHttpServer())
+        .get('/v1/forecast')
+        .set('x-forwarded-for', ipv4);
       expect(response.statusCode).toBe(200);
       expect(response.headers['content-type']).toBe(
         'application/json; charset=utf-8',

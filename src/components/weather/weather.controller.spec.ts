@@ -11,7 +11,7 @@ describe('WeatherController', () => {
   const wrongIp = 'My ip';
   const city = 'Montevideo';
   const wrongCity = 'Azkaban';
-  const headers = {'x-forwarded-for': ipv4}
+  const headers = { 'x-forwarded-for': ipv4 };
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
@@ -34,7 +34,9 @@ describe('WeatherController', () => {
       expect(response).toHaveProperty('countryCode');
     });
     it('Successful detection of location by ipv6', async () => {
-      const response = await appController.getLocation({ headers: {'x-forwarded-for': ipv6} });
+      const response = await appController.getLocation({
+        headers: { 'x-forwarded-for': ipv6 },
+      });
       expect(response.status).toBe('success');
       expect(response).toHaveProperty('lat');
       expect(response).toHaveProperty('lon');
@@ -44,7 +46,9 @@ describe('WeatherController', () => {
       expect(response).toHaveProperty('countryCode');
     });
     it('Failure to detect a location with the wrong ip', async () => {
-      const response = await appController.getLocation({ headers: {'x-forwarded-for': wrongIp} });
+      const response = await appController.getLocation({
+        headers: { 'x-forwarded-for': wrongIp },
+      });
       expect(response.status).toBe('fail');
       expect(response.message).toBe('invalid query');
     });
@@ -79,7 +83,7 @@ describe('WeatherController', () => {
 
   describe('getForecast', () => {
     it('Correctly returns forecast data with city', async () => {
-      const response = await appController.getForecast({ headers}, city);
+      const response = await appController.getForecast({ headers }, city);
       expect(response.cod).toBe('200');
       expect(response.list.length).toBeGreaterThan(5);
       expect(response).toHaveProperty('city');
