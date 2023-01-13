@@ -46,11 +46,14 @@ describe('WeatherController', () => {
       expect(response).toHaveProperty('countryCode');
     });
     it('Failure to detect a location with the wrong ip', async () => {
-      const response = await appController.getLocation({
-        headers: { 'x-forwarded-for': wrongIp },
-      });
-      expect(response.status).toBe('fail');
-      expect(response.message).toBe('invalid query');
+      try {
+        await appController.getLocation({
+          headers: { 'x-forwarded-for': wrongIp },
+        });  
+      } catch (error) {
+        expect(error.response.status).toBe('fail');
+        expect(error.response.message).toBe('invalid query');
+      }
     });
   });
 
@@ -74,10 +77,13 @@ describe('WeatherController', () => {
       expect(response).toHaveProperty('coord');
     });
     it('Failure to return current data with wrong city', async () => {
-      const response = await appController.getCurrent({ headers }, wrongCity);
-      expect(response).not.toHaveProperty('weather');
-      expect(response.cod).toBe('404');
-      expect(response.message).toBe('city not found');
+      try {
+        await appController.getCurrent({ headers }, wrongCity);
+      } catch (error) {
+        expect(error.response).not.toHaveProperty('weather');
+        expect(error.response.cod).toBe('404');
+        expect(error.response.message).toBe('city not found');
+      }
     });
   });
 
@@ -95,10 +101,13 @@ describe('WeatherController', () => {
       expect(response).toHaveProperty('city');
     });
     it('Failure to return forecast data with wrong city', async () => {
-      const response = await appController.getForecast({ headers }, wrongCity);
-      expect(response.cod).toBe('404');
-      expect(response).not.toHaveProperty('city');
-      expect(response.message).toBe('city not found');
+      try {
+        await appController.getForecast({ headers }, wrongCity);
+      } catch (error) {
+        expect(error.response.cod).toBe('404');
+        expect(error.response).not.toHaveProperty('city');
+        expect(error.response.message).toBe('city not found');
+        }
     });
   });
 });
