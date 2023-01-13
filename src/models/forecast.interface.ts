@@ -17,7 +17,7 @@ interface City {
 }
 
 export interface Forecast {
-  cod: number;
+  cod: string;
   message: number;
   cnt?: number;
   city?: City;

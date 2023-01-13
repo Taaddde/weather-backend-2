@@ -49,7 +49,7 @@ export interface Weather {
   timezone: number;
   id: number;
   name: string;
-  cod: number;
+  cod: string;
   dt_txt?: string;
   message?: string;
 }
